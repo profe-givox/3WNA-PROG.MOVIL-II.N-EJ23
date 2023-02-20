@@ -14,7 +14,7 @@ interface MonedaDao {
     @Query("select * from Moneda")
     fun getAll(): kotlinx.coroutines.flow.Flow<List<Moneda>>
 
-    @Query("DELETE FROM Nota")
+    @Query("DELETE FROM Moneda")
     suspend fun deleteAll() : Int
 
 }

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
-    private val MonedaViewModel: MonedaViewModel by  viewModels {
+    private val monedaViewModel: MonedaViewModel by  viewModels {
         MonedaViewModelFactory((application as MiApplication).repositoryMoneda)
     }
 
@@ -39,6 +39,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        monedaViewModel.allMoneda.observe(this){
+            it?.let { monedas ->
+                monedas.forEach { moneda ->
+                    Log.i("MONEDAX", "Code: ${moneda.codeMoneda}, Name: ${moneda.nombreMoneda}")
+                }
+
+            }
+        }
 
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

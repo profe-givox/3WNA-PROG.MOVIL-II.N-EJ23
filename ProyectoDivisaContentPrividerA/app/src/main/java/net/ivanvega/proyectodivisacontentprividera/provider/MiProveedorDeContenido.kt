@@ -1,10 +1,16 @@
 package net.ivanvega.proyectodivisacontentprividera.provider
 
+import android.app.Application
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
+import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.runBlocking
+import net.ivanvega.proyectodivisacontentprividera.MiApplication
+import net.ivanvega.proyectodivisacontentprividera.db.MiDbMonedas
+import net.ivanvega.proyectodivisacontentprividera.repository.MonedaRepository
 
 private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
     /*
@@ -29,9 +35,13 @@ private val sUriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
 }
 
 class MiProveedorDeContenido : ContentProvider() {
+
+    lateinit var repository: MonedaRepository
+    lateinit var db: MiDbMonedas
     override fun onCreate(): Boolean {
         TODO("Not yet implemented")
-
+        repository =  (context?.applicationContext as MiApplication).repositoryMoneda
+        db =  (context?.applicationContext as MiApplication).database
     }
 
     override fun query(
@@ -48,6 +58,7 @@ class MiProveedorDeContenido : ContentProvider() {
             //query / insert
             1 -> {
                 //ir  a la bd y traer el getall
+
             }
 
             //"content://net.ivanvega.proyectodivisacontentprividera/monedas/*"
