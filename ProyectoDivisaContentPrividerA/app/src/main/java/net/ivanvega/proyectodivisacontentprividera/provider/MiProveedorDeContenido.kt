@@ -7,7 +7,10 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import androidx.lifecycle.asLiveData
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import net.ivanvega.proyectodivisacontentprividera.MiApplication
 import net.ivanvega.proyectodivisacontentprividera.db.MiDbMonedas
 import net.ivanvega.proyectodivisacontentprividera.repository.MonedaRepository
@@ -39,9 +42,10 @@ class MiProveedorDeContenido : ContentProvider() {
     lateinit var repository: MonedaRepository
     lateinit var db: MiDbMonedas
     override fun onCreate(): Boolean {
-        TODO("Not yet implemented")
-        repository =  (context?.applicationContext as MiApplication).repositoryMoneda
-        db =  (context?.applicationContext as MiApplication).database
+        //TODO("Not yet implemented")
+        repository =  (context as MiApplication).repositoryMoneda
+        db =  (context as MiApplication).database
+        return true
     }
 
     override fun query(
@@ -52,12 +56,18 @@ class MiProveedorDeContenido : ContentProvider() {
         p4: String?
     ): Cursor? {
         //TODO("Not yet implemented")
+        var cursor: Cursor? = null
+
         when( sUriMatcher.match(p0)){
 
             //"content://net.ivanvega.proyectodivisacontentprividera/monedas"
             //query / insert
             1 -> {
                 //ir  a la bd y traer el getall
+                    runBlocking(Dispatchers.IO){
+                        cursor = db.monedaDao().getAllCursor()
+                    }
+
 
             }
 
@@ -77,7 +87,7 @@ class MiProveedorDeContenido : ContentProvider() {
             }
 
         }
-         return null
+         return cursor
     }
 
     override fun getType(p0: Uri): String? {

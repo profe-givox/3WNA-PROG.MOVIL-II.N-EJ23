@@ -1,6 +1,8 @@
 package net.ivanvega.proyectodivisacontentprividera
 
 import android.content.ContentValues
+import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.provider.UserDictionary
@@ -14,6 +16,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.coroutineScope
 import net.ivanvega.proyectodivisacontentprividera.databinding.ActivityMainBinding
 import net.ivanvega.proyectodivisacontentprividera.repository.MonedaViewModel
 import net.ivanvega.proyectodivisacontentprividera.repository.MonedaViewModelFactory
@@ -40,14 +44,29 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        monedaViewModel.allMoneda.observe(this){
+
+            var   micursor   = contentResolver.query(
+                Uri.parse("content://net.ivanvega.proyectodivisacontentprividera/monedas"),
+                arrayOf<String>("_ID", "codeMoneda","nombreMoneda","pais"),
+                null, null,null
+            )
+            micursor?.apply {
+                while (moveToNext()){
+                    Log.i("MONEDAXCP", " id: ${getInt(0)} , code: ${getString(1)} ")
+                }
+            }
+
+
+
+
+        /*monedaViewModel.allMoneda.observe(this){
             it?.let { monedas ->
                 monedas.forEach { moneda ->
                     Log.i("MONEDAX", "Code: ${moneda.codeMoneda}, Name: ${moneda.nombreMoneda}")
                 }
 
             }
-        }
+        }*/
 
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

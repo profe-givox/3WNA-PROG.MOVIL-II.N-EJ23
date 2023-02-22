@@ -29,6 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="net.ivanvega.proyectodivisacontentprividera"
+            android:name=".provider.MiProveedorDeContenido"
+            android:enabled="true"
+            android:exported="true"
+            />
     </application>
 
 </manifest>
