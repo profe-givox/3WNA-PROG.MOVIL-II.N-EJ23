@@ -64,10 +64,11 @@ class MiProveedorDeContenido : ContentProvider() {
             //query / insert
             1 -> {
                 //ir  a la bd y traer el getall
-                    runBlocking(Dispatchers.IO){
+                    /*runBlocking(Dispatchers.IO){
+                        Thread.sleep(6000)
                         cursor = db.monedaDao().getAllCursor()
-                    }
-
+                    }*/
+                cursor = db.monedaDao().getAllCursor()
 
             }
 

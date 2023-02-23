@@ -45,16 +45,16 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
 
-            var   micursor   = contentResolver.query(
+            /*var   micursor   = contentResolver.query(
                 Uri.parse("content://net.ivanvega.proyectodivisacontentprividera/monedas"),
-                arrayOf<String>("_ID", "codeMoneda","nombreMoneda","pais"),
+                arrayOf<String>("_ID", "codeMoneda","nombreMoneda"),
                 null, null,null
             )
             micursor?.apply {
                 while (moveToNext()){
-                    Log.i("MONEDAXCP", " id: ${getInt(0)} , code: ${getString(1)} ")
+                    Log.i("MONEDAXCP", " id: ${getInt(0)} , code: ${getString(1)}, moneda ${getString(2)}")
                 }
-            }
+            }*/
 
 
 
