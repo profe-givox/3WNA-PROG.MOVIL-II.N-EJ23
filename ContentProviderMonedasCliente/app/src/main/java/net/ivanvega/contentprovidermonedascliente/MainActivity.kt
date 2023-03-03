@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
 
         spn = findViewById(R.id.spinner)
 
+
         LoaderManager.getInstance(this)
             .initLoader<Cursor>(1001, null, mLoaderCallbacks)
-
         var   micursor   = contentResolver.query(
             Uri.parse("content://net.ivanvega.proyectodivisacontentprividera/monedas"),
             arrayOf<String>("_ID", "codeMoneda","nombreMoneda"),

@@ -5,6 +5,7 @@
     <queries>
         <provider
             android:authorities="net.ivanvega.proyectodivisacontentprividera" />
+
     </queries>
     <application
         android:allowBackup="true"

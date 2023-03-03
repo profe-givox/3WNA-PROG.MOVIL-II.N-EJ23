@@ -74,7 +74,7 @@ class FirstFragment : Fragment() {
         }
 
         LoaderManager.getInstance(this)
-            .initLoader<Cursor>(1001, null, mLoaderCallbacks)
+                .initLoader<Cursor>(1001, null, mLoaderCallbacks)
     }
 
     override fun onDestroyView() {

@@ -130,6 +130,7 @@ class MiProveedorDeContenido : ContentProvider() {
             //query / insert
             1 -> {
                 //ir  a la bd y llamar insert. Mapear ContentValues con Pojo
+
             }
 
             //"content://net.ivanvega.proyectodivisacontentprividera/monedas/*"
