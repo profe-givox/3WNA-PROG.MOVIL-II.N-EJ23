@@ -11,16 +11,11 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.ItemizedIconOverlay
-import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
-import org.osmdroid.views.overlay.Marker
-import org.osmdroid.views.overlay.OverlayItem
-
-
-
+import org.osmdroid.views.overlay.*
 
 
 class MainActivity : AppCompatActivity() {
+    private var firstMarker: Marker? = null
     private lateinit var marker: Marker
     var map: MapView? = null
 
@@ -59,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
         val mapController = map!!.controller
         mapController.setZoom(19)
-        val startPoint = GeoPoint(20.020719303434337, -100.71925167701494)
+        val startPoint = GeoPoint(20.140153689100682, -101.15067778465794)
         mapController.setCenter(startPoint)
 
         items.add(
@@ -70,8 +65,25 @@ class MainActivity : AppCompatActivity() {
             )
         ) // Lat/Lon decimal degrees
 
-        
+        firstMarker = Marker(map)
+        firstMarker?.position = startPoint
+        firstMarker?.setAnchor(Marker.ANCHOR_BOTTOM, Marker.ANCHOR_CENTER)
+        firstMarker?.title = "Bello ITSUR"
+        map?.overlays?.add(firstMarker)
 
+        map?.invalidate()
+
+        //add your points here
+        val line = Polyline();   //see note below!
+
+        line.setPoints(
+            arrayListOf(startPoint,
+                GeoPoint(20.140462055482093, -101.15053861935188),
+                GeoPoint(20.14341707158446, -101.14984874847927),
+                GeoPoint(20.14395683454409, -101.15131101775268)
+                )
+        )
+        map?.overlays?.add(line)
     }
 
     override fun onResume() {
