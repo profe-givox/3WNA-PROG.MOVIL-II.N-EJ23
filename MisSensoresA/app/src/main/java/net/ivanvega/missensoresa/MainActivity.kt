@@ -9,9 +9,13 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
     private val gravity = FloatArray(3)
@@ -142,7 +146,9 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
 
 class  MiViewDibujado (ctx: Context) : View(ctx), SensorEventListener {
 
-     var xPos =
+    private var screenHeight: Float = 0.0F
+    private var screenWidth: Float = 0.0F
+    var xPos =
         0f
       var xAcceleration:kotlin.Float = 0f
       var xVelocity:kotlin.Float = 0.0f
@@ -156,6 +162,18 @@ class  MiViewDibujado (ctx: Context) : View(ctx), SensorEventListener {
 
     init {
         pincel.setColor(Color.RED)
+
+        val displayMetrics = DisplayMetrics()
+
+        val windowManager = (getContext().getSystemService(Context.WINDOW_SERVICE) as WindowManager)
+
+        windowManager.getDefaultDisplay().getMetrics(displayMetrics)
+        screenWidth = displayMetrics.widthPixels.toFloat()
+        screenHeight = displayMetrics.heightPixels.toFloat()
+
+        Log.d("Pantalla Tamaño", "Tamaño pantalla width=${screenWidth} " +
+                "; heigth=${screenHeight}" )
+
     }
 
     override fun onDraw(canvas: Canvas?) {
