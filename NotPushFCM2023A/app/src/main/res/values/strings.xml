@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NotPushFCM2023A</string>
+    <string name="default_notification_channel_id">"MiCanalDefaultFCM "</string>
+</resources>
