@@ -9,7 +9,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
-        Log.d(TAG, "Mensaje en primer: ${message.notification!!.title}")
+        Log.d(TAG, "Mensaje en primer: ${message.data}")
     }
 
     /**

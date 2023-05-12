@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MiAppConFeisBukej2023</string>
+
+
+    <string name="facebook_app_id">558570896393447</string>
+    <string name="fb_login_protocol_scheme">fb558570896393447</string>
+    <string name="facebook_client_token">65771b9a4231644c3af870f02fdf0ff7</string>
+
+
+</resources>
